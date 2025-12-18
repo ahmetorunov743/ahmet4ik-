@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мой Профиль | Проект</title>
+    <link rel="stylesheet" href="/storage/emulated/0/Мой проект/scc/styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="profile-header">
+            <img src="/storage/emulated/0/Мой проект/Screenshot_20251001_183925_TikTok.jpg" alt="Профиль" class="avatar" id="avatar">
+            <h1 class="username">ahmet4ik_top</h1>
+        </div>
+
+        <div class="links-section">
+            <a helf= "https://linkm.me/users/arssss" target="_blank" class="link-button telegram" id="link-tg">
+                Telegram
+            </a>
+            <a href="https://www.tiktok.com/@ahmet4ik_top?_r=1&_d=em9mf0d7h2k376&sec_uid=MS4wLjABAAAARwc5UUDqkI5FhDOEv56NbkZ4scYfT5tzrXW8BYOQiGaI9wFYmWgBD6lsqwapRzlS&share_author_id=7497205246365664277&sharer_language=ru&source=h5_m&u_code=ek2c0c3k8khkg9&timestamp=1765915043&user_id=7497205246365664277&sec_user_id=MS4wLjABAAAARwc5UUDqkI5FhDOEv56NbkZ4scYfT5tzrXW8BYOQiGaI9wFYmWgBD6lsqwapRzlS&item_author_type=1&utm_source=copy&utm_campaign=client_share&utm_medium=android&share_iid=7582978141380953874&share_link_id=8ac9d161-ff79-400c-a2b7-6deaa08c0f4e&share_app_id=1233&ugbiz_name=ACCOUNT&ug_btm=b8727%2Cb7360&social_share_type=5&enable_checksum=1" target="_blank" class="link-button tiktok" id="link-tt">
+                TikTok
+            </a>
+            <a href="https://www.instagram.com/ahmet4ik25?igsh=aW04NnNoMWdtdzUz" target="_blank" class="link-button instagram" id="link-ig">
+                Instagram
+            </a>
+        </div>
+        
+        <div class="description-footer" id="description">
+            <p>
+                 Добро пожаловать на мою страницу! Я занимаюсь видеомонтажом, созданием контента и делюсь своим опытом. Подписывайтесь на мои социальные сети, чтобы увидеть эффектные видео, жду!
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript для "плавного вылета" (Fade-in)
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const container = document.querySelector('.container');
+            container.style.opacity = '1';
+
+            // Небольшая задержка для последовательного появления
+            setTimeout(() => {
+                document.getElementById('avatar').style.transform = 'translateY(0)';
+                document.getElementById('avatar').style.opacity = '1';
+            }, 50);
+
+            setTimeout(() => {
+                document.querySelector('.username').style.transform = 'translateY(0)';
+                document.querySelector('.username').style.opacity = '1';
+            }, 100);
+
+            // Появление кнопок
+            const links = document.querySelectorAll('.link-button');
+            links.forEach((link, index) => {
+                setTimeout(() => {
+                    link.style.transform = 'scale(1)';
+                    link.style.opacity = '1';
+                }, 200 + index * 100); // Каждая кнопка появляется с небольшой задержкой
+            });
+
+            setTimeout(() => {
+                document.getElementById('description').style.transform = 'translateY(0)';
+                document.getElementById('description').style.opacity = '1';
+            }, 200 + links.length * 100 + 100);
+        });
+    </script>
+</body>
+</html>
