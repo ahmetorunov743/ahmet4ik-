@@ -1,0 +1,33 @@
+rules_version = '2';
+
+// NXT — Firestore security rules
+// Firebase Console -> Firestore Database -> Rules -> paste this file -> Publish
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // A client's profile and status
+    match /users/{uid} {
+      allow read: if request.auth != null && request.auth.uid == uid;
+      allow create: if request.auth != null && request.auth.uid == uid
+                    && request.resource.data.status == 'business';
+      // the client cannot change their own status
+      allow update: if request.auth != null && request.auth.uid == uid
+                    && request.resource.data.status == resource.data.status;
+      allow delete: if false;
+    }
+
+    // Requests from the contact form: anyone can send, only you can read (in the console)
+    match /requests/{id} {
+      allow create: if request.resource.data.message is string
+                    && request.resource.data.message.size() > 0
+                    && request.resource.data.message.size() <= 3000
+                    && request.resource.data.name is string
+                    && request.resource.data.name.size() <= 200
+                    && request.resource.data.phone is string
+                    && request.resource.data.phone.size() <= 60
+                    && (request.auth == null || request.resource.data.uid == request.auth.uid);
+      allow read, update, delete: if false;
+    }
+  }
+}
